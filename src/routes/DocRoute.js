@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const {Doctor}=require('../db')
-const router = Router();
+const router = Router(); 
 
 
 router.get('/', async (req,res)=>{
