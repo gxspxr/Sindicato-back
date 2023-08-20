@@ -1,5 +1,5 @@
 const axios= require('axios');
-const {Pokemon, Type}=require("../db")
+const {Pokemon, Type, Doctor}=require("../db")
 
 
 const getAllPokemons = async () => {
@@ -55,6 +55,17 @@ const getAllPokemons = async () => {
       console.log(error);
     }
   };
+
+  const getDoctors = async () =>{
+    try {
+      const doctors = Doctor.findAll()
+
+      return doctors
+      
+    } catch (error) {
+      
+    }
+  }
   
 const getDbInfo = async () => {
     return await Pokemon.findAll({
@@ -92,4 +103,5 @@ module.exports = {
     getAllInfo,
     getPokemonByID,
     getTypes,
+    getDoctors
 }

@@ -6,14 +6,25 @@ module.exports = (sequelize) => {
   sequelize.define('Paciente', {
     id: {
         type: DataTypes.INTEGER,
-        autoIncrement:true,
         allowNull: false,
         primaryKey: true
       },
-        name: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      lastname: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      cel:{
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      insurance:{
+        type: DataTypes.STRING,
+        allowNull: false
+      }
   },{
     createdAt: false,
     updatedAt: false,

@@ -15,11 +15,12 @@ router.get('/', async (req,res)=>{
 })
 router.post('/', async (req, res) => {
     try {
-    const {name, lastname} = req.body;
+    const {name, lastname, speciality} = req.body;
   
       const doctor = await Doctor.create({
       name,
-      lastname
+      lastname,
+      speciality
       });
   
       if (!doctor) {
@@ -36,6 +37,8 @@ router.post('/', async (req, res) => {
   router.delete('/:id', async (req, res) => {
     try {
       const id = req.params.id;
+      const name = req.body.name
+      const lastname = req.body.lastname
       const deletedDoctor = await Doctor.destroy({
         where: {
           id: id
@@ -44,11 +47,35 @@ router.post('/', async (req, res) => {
       if (deletedDoctor === 0) {
         return res.status(404).send("Error al encontrar el doctor");
       }
-      return res.status(200).send(`El doctor ${id} se eliminó con éxito`);
+      return res.status(200).send(`El doctor ${name + " " + lastname} se eliminó con éxito`);
     } catch (error) {
       console.error(error.message);
       return res.status(500).send("internal server error");
     }
   });
+
+  router.put('/:id', async (req, res) => {
+     
+    try {
+      const id = req.params.id;
+      const name = req.body.name
+      const lastname = req.body.lastname
+      const speciality = req.body.speciality
+      const updatedDoctor = await Doctor.update({
+        name: name,
+        lastname: lastname,
+        speciality: speciality
+      }, {
+        where: {
+          id: id
+        }
+      });
+      if (updatedDoctor === 0) {
+        return res.status(404).send("Error al encontrar el doctor");
+      }
+      return res.status(200).send(`El doctor ${name + " " + lastname} se actualizó con exito`);
+    } catch (error) {
+      console.error(error.message);
+  }});
   
 module.exports=router;
