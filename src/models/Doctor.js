@@ -13,10 +13,14 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
     },
-      lastname:{
+    lastname:{
         type: DataTypes.STRING,
         allowNull: false,
     },
+    speciality: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   },{
     createdAt: false,
     updatedAt: false,
