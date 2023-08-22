@@ -55,12 +55,14 @@ router.delete('/:id', async(req,res)=>{
 
 router.put('/:id', async(req,res)=>{
     try {
+        const idBody= req.body.id
         const id=req.params.id
         const name = req.body.name
         const lastname = req.body.lastname
         const cel = req.body.cel
         const insurance = req.body.insurance
         const updatedPatient=await Paciente.update({
+            id:idBody,
             name:name,
             lastname:lastname,
             cel:cel,
