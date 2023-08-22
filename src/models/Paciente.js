@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
         allowNull: false
       },
       cel:{
-        type: DataTypes.BIGINT,
+        type: DataTypes.STRING,
         allowNull: true
       },
       insurance:{
