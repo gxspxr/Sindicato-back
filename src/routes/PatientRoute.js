@@ -53,6 +53,45 @@ router.delete('/:id', async(req,res)=>{
     
 })
 
+router.put('/:id', async(req,res)=>{
+    try {
+        const id=req.params.id
+        const name = req.body.name
+        const lastname = req.body.lastname
+        const cel = req.body.cel
+        const insurance = req.body.insurance
+        const updatedPatient=await Paciente.update({
+            name:name,
+            lastname:lastname,
+            cel:cel,
+            insurance:insurance
+        },{
+            where:{
+                id:id
+        }
+        })
+        if(updatedPatient===0){
+            res.status(404).send("Error al encontrar el paciente")
+        }
+        res.status(200).send(`El paciente ${name + " " + lastname} se actualizo con exito`)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("internal server error")
+        
+    }
+})
+
+router.get('/:id', async(req,res)=>{
+    try {
+        const id=req.params.id
+        const patient=await Paciente.findByPk(id)
+        res.status(200).send(patient)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("internal server error")
+    }
+})
+
 
 
 module.exports = router
