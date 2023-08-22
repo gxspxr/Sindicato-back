@@ -26,15 +26,3 @@ module.exports = (sequelize) => {
     updatedAt: false,
   });
 };
-
-
-//BD pokemons
-// ID. *
-// Nombre. *
-// Imagen. *
-// Vida. *
-// Ataque. *
-// Defensa. *
-// Velocidad.
-// Altura.
-// Peso.

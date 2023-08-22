@@ -3,19 +3,23 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('type', {
+  sequelize.define('Turnos', {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement:true,
-      allowNull: false,
-      primaryKey: true
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true
     },
-      name: {
-      type: DataTypes.STRING,
+    fecha: {
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
+    hora: {
+      type: DataTypes.TIME,
+      allowNull: false,
+    },
+
   },{
     createdAt: false,
     updatedAt: false,
   });
-  }
+};
