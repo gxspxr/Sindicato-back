@@ -26,6 +26,7 @@ router.post('/', async (req, res) => {
       if (!doctor) {
         return res.send({ message: "Not created" });
       }
+
   
       return res.status(201).send(doctor);
     } catch (error) {
