@@ -17,6 +17,10 @@ router.get('/', async (req,res)=>{
 router.post('/:id', async (req, res) => {
     try {
         const pacienteId = req.params.id;
+
+        if(!pacienteId){
+            return res.status(404).send("Paciente no encontrado");
+        }
         const { fecha, hora, doctorId } = req.body; // Agrega 'doctorId' al cuerpo
 
         const turno = await Turnos.create({
