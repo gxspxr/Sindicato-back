@@ -40,13 +40,27 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Paciente, Doctor } = sequelize.models;
+const { Paciente, Doctor, Turnos } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
 Doctor.belongsToMany(Paciente, {through:"DoctorPaciente"})
 Paciente.belongsToMany(Doctor, {through:"DoctorPaciente"})
+Paciente.hasMany(Turnos, {
+   foreignKey: "pacienteId",
+   sourceKey: "id",
+ });
+ 
+ Turnos.belongsTo(Paciente, {
+   foreignKey: "pacienteId",
+   targetKey: "id",
+ });
+ 
+ Turnos.belongsTo(Doctor, {
+   foreignKey: "doctorId", // Agrega la clave foránea para el doctor
+   targetKey: "id",
+ });
 
 
 module.exports = {
