@@ -82,10 +82,8 @@ router.post('/', async (req, res) => {
   router.get('/:id', async(req,res)=>{
     try {
         const id = req.params.id
-        
-    const doctor = await Doctor.findByPk(id,{
-        include: [{ model: Paciente },{model: Turnos}],
-    })
+
+    const doctor = await Doctor.findByPk(id)
     if(!doctor){
         return res.status(404).send("Doctor no encontrado")
     }
