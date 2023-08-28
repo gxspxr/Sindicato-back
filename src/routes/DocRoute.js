@@ -78,5 +78,22 @@ router.post('/', async (req, res) => {
     } catch (error) {
       console.error(error.message);
   }});
+
+  router.get('/:id', async(req,res)=>{
+    try {
+        const id = req.params.id
+        
+    const doctor = await Doctor.findByPk(id,{
+        include: [{ model: Paciente },{model: Turnos}],
+    })
+    if(!doctor){
+        return res.status(404).send("Doctor no encontrado")
+    }
+    res.status(200).send(doctor)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("internal server error")
+    }
+  })
   
 module.exports=router;
